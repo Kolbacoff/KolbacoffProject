@@ -268,29 +268,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-document.addEventListener('DOMContentLoaded', function() {
-  // ФИКС 1: Предотвращаем прыжок страницы при фокусе на инпутах
-  const inputs = document.querySelectorAll('input, select, textarea');
-  let scrollPosition = 0;
-  
-  inputs.forEach(input => {
-    input.addEventListener('focus', function() {
-      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    });
-    
-    input.addEventListener('blur', function() {
-      window.scrollTo(0, scrollPosition);
-    });
-  });
-  
-  // ФИКС 2: Мобильное меню показывать/скрывать
-  const mobileToggle = document.querySelector('.mobile-menu-toggle');
-  const nav = document.querySelector('.nav');
-  
-  if (mobileToggle) {
-    mobileToggle.addEventListener('click', function() {
-      nav.classList.toggle('mobile-menu-open');
-      mobileToggle.classList.toggle('active');
-    });
-  }
-});
