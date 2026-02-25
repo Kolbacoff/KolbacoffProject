@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 document.addEventListener('DOMContentLoaded', function() {
-  // ФИКС 1: Предотвращаем прыжок страницы при фокусе на инпутах
+  // ФИКС ФОРМЫ
   const inputs = document.querySelectorAll('input, select, textarea');
   let scrollPosition = 0;
   
@@ -277,20 +277,28 @@ document.addEventListener('DOMContentLoaded', function() {
     input.addEventListener('focus', function() {
       scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     });
-    
     input.addEventListener('blur', function() {
       window.scrollTo(0, scrollPosition);
     });
   });
   
-  // ФИКС 2: Мобильное меню показывать/скрывать
+  // МОБИЛЬНОЕ МЕНЮ
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   const nav = document.querySelector('.nav');
   
-  if (mobileToggle) {
+  if (mobileToggle && nav) {
     mobileToggle.addEventListener('click', function() {
       nav.classList.toggle('mobile-menu-open');
       mobileToggle.classList.toggle('active');
+    });
+  }
+  
+  // ЗАКРЫТИЕ МЕНЮ КЛИКОМ ПО ССЫЛКАМ
+  const navLinks = document.querySelectorAll('.nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      nav.classList.remove('mobile-menu-open');
+      mobileToggle.classList.remove('active');
     });
   }
 });
