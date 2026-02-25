@@ -252,3 +252,19 @@ const Utils = {
     selectElements('.animate-on-scroll').forEach(el => observer.observe(el));
   }
 };
+
+// Предотвращает горизонтальный скролл
+document.addEventListener('DOMContentLoaded', function() {
+  const html = document.documentElement;
+  html.style.overflowX = 'hidden';
+  
+  // Фикс для формы на мобильных
+  const inputs = document.querySelectorAll('input, select, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
+    });
+  });
+});
