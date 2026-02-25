@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Колбасoff | Ресторан Данилы Колбасенко</title>
+  <meta name="description" content="Колбасoff — ресторан Данилы Колбасенко в Екатеринбурге. Авторские колбасы, стейки, рулька. Бронирование онлайн.">
+  <meta name="keywords" content="колбаса, ресторан, мясо, екатеринбург, Данила Колбасенко">
+  <meta property="og:title" content="Колбасoff | Ресторан Данилы Колбасенко">
+  <meta property="og:description" content="Лучшее мясо в городе!">
+  <meta property="og:image" content="images/kolbasa-hero.jpg">
+  
+  <!-- ШРИФТЫ И ИКОНКИ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- КАРТЫ -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">Колбасoff<span>· by Danila Kolbasenko</span></a>
+      <nav class="nav">
+        <div class="mobile-menu-toggle">
+          <span></span><span></span><span></span>
+        </div>
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#booking">Бронирование</a>
+        <a href="#team">Команда</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Колбасoff<br>Ресторан имени Данилы Колбасенко</h1>
+          <p>Ресторан, где мясо — главный герой. Авторский подход к традициям, лучшие сорта мяса и уникальные рецепты от команды профессионалов.</p>
+          <div class="hero-buttons">
+            <a href="#menu" class="btn btn--rounded">Посмотреть меню</a>
+            <a href="#booking" class="btn btn--outline btn--rounded">Бронирование</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="images/kolbasa-hero.jpg" alt="Фирменная колбаса Колбасoff">
+        </div>
+      </div>
+    </section>
+
+    <!-- О НАС -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2>О нас</h2>
+        <div class="features">
+          <div class="feature-card">
+            <i class="fas fa-medal"></i>
+            <h3>Авторский подход</h3>
+            <p>Собственные рецептуры, разработанные лично Данилой Колбасенко и его командой.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-drumstick-bite"></i>
+            <h3>Отборное мясо</h3>
+            <p>Только проверенные фермерские хозяйства и мраморные сорта мяса.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-wine-glass-alt"></i>
+            <h3>Идеальные пары</h3>
+            <p>Собственная винотека и авторские настойки к каждому блюду.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- МЕНЮ -->
+    <section class="menu" id="menu">
+      <div class="container">
+        <h2>Меню</h2>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/kolbasa-danilovski.jpg" alt="Колбаса по-даниловски">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Колбаса по-даниловски</h3>
+                <span class="price">890₽</span>
+              </div>
+              <p class="menu-desc">Телятина, говядина, трюфельное масло, копчение на ольхе. Подаётся с томлёным луком и горчицей.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/rulka.jpg" alt="Свиная рулька">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Рулька «Классик»</h3>
+                <span class="price">1 290₽</span>
+              </div>
+              <p class="menu-desc">Томлёная в тёмном пиве, с мёдом и можжевельником. Подаётся с квашеной капустой и хрустящим картофелем.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/kolbaski.jpg" alt="Ассорти колбасок">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Ассорти колбасок</h3>
+                <span class="price">1 590₽</span>
+              </div>
+              <p class="menu-desc">Три вида домашних колбасок: сыровяленые, с паприкой, с травами. Набор соусов и соленья.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/salo-shokolad.jpg" alt="Сало в шоколаде">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Сало в шоколаде</h3>
+                <span class="price">590₽</span>
+              </div>
+              <p class="menu-desc">Фирменный десерт: тонкие слайсы солёного сала в бельгийском шоколаде с орехами. Необычно, но стоит попробовать.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/ribay.jpg" alt="Рибай на гриле">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Рибай на гриле</h3>
+                <span class="price">2 490₽</span>
+              </div>
+              <p class="menu-desc">Мраморная говядина 400г, сухая выдержка 28 дней, специи Данилы. Подаётся с томатным чатни и картофелем фондан.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-image">
+              <img src="images/lulya-kebab.jpg" alt="Люля-кебаб">
+            </div>
+            <div class="menu-content">
+              <div class="menu-header">
+                <h3>Люля-кебаб «Колбасoff»</h3>
+                <span class="price">1 390₽</span>
+              </div>
+              <p class="menu-desc">Баранина и говядина 50/50, наш фарш с секретом, угли буксбаум. С лавашом, зеленью и томат-соусом.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- БРОНИРОВАНИЕ -->
+    <section class="booking" id="booking">
+      <div class="container">
+        <div class="booking-header">
+          <h2>Забронируйте стол</h2>
+          <p>Онлайн-бронирование доступно за 2 часа до посещения. Для больших компаний звоните +7 (343) 288-88-55</p>
+        </div>
+        
+        <form class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Имя</label>
+              <input type="text" placeholder="Введите ваше имя" required>
+            </div>
+            <div class="form-group">
+              <label>Телефон</label>
+              <input type="tel" placeholder="+7 (___) ___-__-__" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Количество гостей</label>
+              <select required>
+                <option value="">Выберите количество</option>
+                <option value="1">1 гость</option>
+                <option value="2">2 гостя</option>
+                <option value="3">3 гостя</option>
+                <option value="4">4 гостя</option>
+                <option value="5+">5+ гостей</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Дата</label>
+              <input type="date" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label>Время</label>
+              <select required>
+                <option value="">Выберите время</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Дополнительно</label>
+            <textarea placeholder="Аллергия, пожелания к столу, особые запросы..." rows="3"></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn--large">Забронировать стол</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- КОМАНДА -->
+    <section class="team" id="team">
+      <div class="container">
+        <h2>Команда</h2>
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="team-photo">
+              <img src="images/viktoriya.jpg" alt="Виктория Колбасенко">
+              <i class="fas fa-user-chef"></i>
+            </div>
+            <div class="team-info">
+              <h3>Виктория Колбасенко</h3>
+              <div class="team-role">Шеф-повар, основатель</div>
+              <p class="team-bio">Коллекционирует рецепты колбас по всему миру. Стаж работы — 18 лет.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo">
+              <img src="images/violetta.jpg" alt="Виолетта Колбасенко">
+            </div>
+            <div class="team-info">
+              <h3>Виолетта Колбасенко</h3>
+              <div class="team-role">Шеф-технолог</div>
+              <p class="team-bio">Отвечает за качество и разработку новых позиций. Мастер своего дела.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo">
+              <img src="images/ilya.jpg" alt="Илья Колбасенко">
+            </div>
+            <div class="team-info">
+              <h3>Илья Колбасенко</h3>
+              <div class="team-role">Шеф-гриль</div>
+              <p class="team-bio">Знает об огне всё. Отвечает за мясо на углях и открытом огне.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo">
+              <img src="images/maksim.jpg" alt="Максим Колбасенко">
+            </div>
+            <div class="team-info">
+              <h3>Максим Колбасенко</h3>
+              <div class="team-role">Сомелье</div>
+              <p class="team-bio">Собирает идеальные пары вина к мясным блюдам. 12 лет опыта в гастрономии.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="reviews" id="reviews">
+      <div class="container">
+        <h2>Отзывы</h2>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-header">
+              <div class="review-author">Анна П.</div>
+              <div class="review-date">20 февраля 2026</div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">Невероятная колбаса по-даниловски! Никогда не пробовала ничего подобного. Обслуживание на высоте, атмосфера потрясающая. Обязательно вернёмся!</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-header">
+              <div class="review-author">Михаил К.</div>
+              <div class="review-date">18 февраля 2026</div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">Рулька — это просто шедевр! Мясо тает во рту, соусы идеальные. Вино подобрали потрясающее. Лучший ресторан для мясоедов!</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-header">
+              <div class="review-author">Елена С.</div>
+              <div class="review-date">15 февраля 2026</div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">Сало в шоколаде — это что-то невероятное! Сначала сомневалась, но теперь это мой любимый десерт. Колбaski тоже отличные.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACTS -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      
+      <div class="contacts-grid">
+        <div class="contact-square">
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Адрес</strong>
+          <span>г. Калининград, ул. Мореходная, 3</span>
+        </div>
+        <div class="contact-square">
+          <i class="fas fa-clock"></i>
+          <strong>Часы работы</strong>
+          <span>Пн-Вс: 14:00 — 02:00</span>
+        </div>
+        <div class="contact-square">
+          <i class="fas fa-phone"></i>
+          <strong>Телефон</strong>
+          <span>+7 (343) 288-88-55</span>
+        </div>
+        <div class="contact-square">
+          <i class="fas fa-envelope"></i>
+          <strong>Email</strong>
+          <span>kolbacoff@hotmail.com</span>
+        </div>
+      </div>
+      
+      <div id="map" class="yandex-map"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Колбасoff</div>
+      <div>© 2025 Ресторан имени Данилы Колбасенко</div>
+      <div>Сайт разработан с любовью к мясу</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+
+  <!-- MODAL SUCCESS -->
+  <div id="successModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Стол забронирован!</h3>
+      <p>Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время для подтверждения.</p>
+      <div class="modal-details">
+        <span>Спасибо за выбор Колбасoff!</span>
+      </div>
+      <button id="closeModal" class="btn btn--large" aria-label="Закрыть">Отлично!</button>
+    </div>
+  </div>
+</body>
+</html>

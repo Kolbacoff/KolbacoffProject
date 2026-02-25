@@ -1,0 +1,768 @@
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #faf7f2;
+  color: #2d2a24;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, .logo, .footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+h2:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  background-color: #b84a2c;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   3. BUTTONS & COMPONENTS
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  background-color: #b84a2c;
+  color: white;
+  padding: 14px 36px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.btn:hover {
+  background-color: #9c3e24;
+}
+
+.btn--outline {
+  background: transparent;
+  border: 2px solid #b84a2c;
+  color: #b84a2c;
+  padding: 12px 34px;
+}
+
+.btn--outline:hover {
+  background: #b84a2c;
+  color: white;
+}
+
+.btn--rounded {
+  border-radius: 50px;
+  padding: 16px 40px;
+}
+
+.btn--large {
+  width: 100%;
+  padding: 22px 36px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 12px;
+  border-radius: 16px;
+  letter-spacing: 0.08em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   4. HEADER & NAVIGATION
+   ========================================================================== */
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #eae3d9;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo {
+  font-size: 1.9rem;
+  color: #2d2a24;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  color: #b84a2c;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.nav {
+  display: flex;
+  gap: 48px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #2d2a24;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: #b84a2c !important;
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #b84a2c;
+}
+
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+.hero {
+  padding: 60px 0 80px;
+  background: linear-gradient(to bottom, #fff, #faf7f2);
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #5a5349;
+  margin: 24px 0 32px;
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.hero-image {
+  background-color: #eae3d9;
+  border-radius: 24px;
+  padding: 30px;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-image img,
+.menu-image img,
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* ==========================================================================
+   6. GRID SYSTEMS
+   ========================================================================== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 60px 0;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 50px 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 50px 0;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 50px 0;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+/* ==========================================================================
+   7. FEATURE CARDS (About)
+   ========================================================================== */
+.feature-card {
+  background: white;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+  border: 1px solid #efebe6;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card i {
+  font-size: 2rem;
+  color: #b84a2c;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: #5f5a54;
+}
+
+/* ==========================================================================
+   8. MENU CARDS
+   ========================================================================== */
+.menu-item {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  border: 1px solid #efebe6;
+  transition: transform 0.2s;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+}
+
+.menu-image {
+  height: 200px;
+  background-color: #dcd3c9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.menu-content {
+  padding: 24px;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.menu-header h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 700;
+  color: #b84a2c;
+  font-size: 1.3rem;
+}
+
+.menu-desc {
+  color: #6b645c;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   9. TEAM CARDS
+   ========================================================================== */
+.team-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  border: 1px solid #efebe6;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.team-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background-color: #dcd3c9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.team-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.team-role {
+  color: #b84a2c;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.team-bio {
+  color: #5f5a54;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   10. REVIEW CARDS
+   ========================================================================== */
+.review-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  border: 1px solid #efebe6;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.review-author {
+  font-weight: 600;
+  color: #2d2a24;
+  font-size: 1.1rem;
+}
+
+.review-date {
+  color: #b84a2c;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-stars i {
+  color: #b84a2c;
+  font-size: 1rem;
+}
+
+.review-stars .far {
+  color: #dcd3c9;
+}
+
+.review-text {
+  color: #5f5a54;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   11. BOOKING FORM
+   ========================================================================== */
+#booking {
+  margin: 80px auto;
+  padding: 60px 40px;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.booking-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.booking-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.booking-header h2:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #b84a2c;
+}
+
+.booking-header p {
+  font-size: 1.15rem;
+  color: #5a5349;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.booking-form {
+  background: white;
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+  border: 1px solid #efebe6;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #2d2a24;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 18px 24px;
+  border: 2px solid #efebe6;
+  border-radius: 16px;
+  font-size: 1rem;
+  background: #faf7f2;
+  color: #2d2a24;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #8b7a6a;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #b84a2c;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(184, 74, 44, 0.06);
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b645c' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 20px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 60px;
+  appearance: none;
+}
+
+/* ==========================================================================
+   12. CONTACTS SECTION
+   ========================================================================== */
+.contacts {
+  padding: 100px 0 40px;
+  background: white;
+  border-radius: 20px;
+  margin: 50px 0 0;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  border: 1px solid #efebe6;
+}
+
+.contact-square {
+  background: #faf7f2;
+  border: 1px solid #efebe6;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-square:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.contact-square i {
+  font-size: 2.5rem;
+  color: #b84a2c;
+  margin-bottom: 20px;
+}
+
+.contact-square strong {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #2d2a24;
+}
+
+.contact-square span {
+  color: #5f5a54;
+}
+
+.yandex-map {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+  height: 400px;
+  background: #f8f7f5;
+  border: 1px solid #efebe6;
+  margin-top: 40px;
+}
+
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
+.footer {
+  background: #2d2a24;
+  color: #b9b1a7;
+  padding: 40px 0;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* ==========================================================================
+   14. MODAL
+   ========================================================================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(45, 42, 36, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.25);
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: scale(0.7);
+}
+
+@keyframes modalSlideIn {
+  to { transform: scale(1); }
+}
+
+.modal-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b84a2c, #d96a4a);
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon i {
+  font-size: 3.5rem;
+  color: white;
+}
+
+/* ==========================================================================
+   15. MOBILE MENU
+   ========================================================================== */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #2d2a24;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* ==========================================================================
+   16. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .header .container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  
+  .nav { display: none; }
+  .mobile-menu-toggle { display: flex; }
+  
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .btn--rounded { width: 100%; }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu-grid,
+  .team-grid,
+  .reviews-grid,
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
