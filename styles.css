@@ -766,3 +766,149 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+/* УЛУЧШЕННЫЕ РЕСПОНСИВНЫЕ НАСТРОЙКИ */
+@media (max-width: 900px) {
+  .header .container {
+    padding: 15px 20px;
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+  
+  .nav { display: none; }
+  .mobile-menu-toggle { display: flex; }
+  
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .hero-image {
+    min-height: 280px;
+    padding: 20px;
+  }
+  
+  .features {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container { 
+    padding: 0 16px !important;
+    max-width: 100%;
+  }
+  
+  h1 { font-size: 2.5rem !important; }
+  h2 { 
+    font-size: 2rem !important; 
+    text-align: center !important;
+  }
+  
+  /* КРИТИЧНО: ФОРМА БРОНИРОВАНИЯ */
+  .booking-form {
+    padding: 40px 24px !important;
+    margin: 20px 0 !important;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 16px 20px !important;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+  
+  /* ГРИДЫ КАРТОЧЕК */
+  .menu-grid,
+  .team-grid,
+  .reviews-grid,
+  .features {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  
+  .menu-item,
+  .team-card,
+  .review-card {
+    margin: 0 !important;
+  }
+  
+  /* КАРТОЧКИ МЕНЮ */
+  .menu-image {
+    height: 180px !important;
+  }
+  
+  /* КОМАНДА */
+  .team-photo {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  .team-card {
+    padding: 30px 20px !important;
+  }
+  
+  /* КОНТАКТЫ */
+  .contacts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  
+  .contact-square {
+    padding: 20px 16px !important;
+  }
+  
+  .yandex-map {
+    height: 300px !important;
+  }
+}
+
+/* СВЕРХЬ МАЛЕНЬКИЕ ЭКРАНЫ */
+@media (max-width: 480px) {
+  .container { padding: 0 12px !important; }
+  
+  .booking-form { padding: 32px 20px !important; }
+  
+  .menu-image { height: 160px !important; }
+  .hero-buttons { flex-direction: column !important; }
+  .btn--rounded { 
+    width: 100% !important; 
+    margin-bottom: 12px !important;
+  }
+  
+  h2:after { 
+    left: 50% !important; 
+    transform: translateX(-50%) !important;
+    width: 60px !important;
+  }
+}
+
+/* КРИТИЧНО: ФИКСИРОВАННЫЕ ЭЛЕМЕНТЫ */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  
+  /* ФИКС ГРИДОВ */
+  .menu-grid,
+  .team-grid,
+  .reviews-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+}
