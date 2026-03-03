@@ -1,216 +1,79 @@
 // ========================================
-// 1. КОНСТАНТЫ И НАСТРОЙКИ
+// КОЛБАСOFF - ОПТИМИЗИРОВАННЫЙ JS
 // ========================================
+
+// Конфигурация
 const CONFIG = {
-  headerOffset: 80,           // Отступ от фиксированной шапки
-  activeSectionOffset: 200,   // Отступ для активации секции
-  map: {
-    center: [54.701465, 20.507020],
-    zoom: 17
-  }
+  headerOffset: 80,
+  activeOffset: 200,
+  map: { center: [54.71044, 20.50702], zoom: 17 }
 };
 
-// ========================================
-// 2. УТИЛИТЫ ДЛЯ ВЫБОРА ЭЛЕМЕНТОВ
-// ========================================
-const selectElements = (selector) => document.querySelectorAll(selector);
-const selectElement = (selector) => document.querySelector(selector);
+// Утилиты
+const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
 
-// ========================================
-// 3. ПЛАВНАЯ ПРОКРУТКА
-// ========================================
-class SmoothScroll {
-  constructor(offset = CONFIG.headerOffset) {
-    this.offset = offset;
-    this.init();
+// ----------------------------------------
+// 1. УПРАВЛЕНИЕ НАВИГАЦИЕЙ
+// ----------------------------------------
+class Navigation {
+  constructor() {
+    this.#initSmoothScroll();
+    this.#initActiveTracking();
   }
-
-  init() {
-    // Навигация в шапке + кнопки Hero
-    selectElements('nav a[href^="#"], .btn[href^="#"]').forEach(this.bindScrollEvent);
+  
+  #initSmoothScroll() {
+    $$('nav a[href^="#"], .btn[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = $(link.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - CONFIG.headerOffset,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
   }
-
-  bindScrollEvent = (anchor) => {
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = anchor.getAttribute('href');
-      const targetSection = selectElement(targetId);
+  
+  #initActiveTracking() {
+    const updateActive = () => {
+      const sections = $$('section[id]');
+      const links = $$('nav a[href^="#"]');
+      let current = '';
       
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - this.offset;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    });
+      sections.forEach(s => {
+        if (window.pageYOffset >= s.offsetTop - CONFIG.activeOffset) {
+          current = s.id;
+        }
+      });
+      
+      links.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === `#${current}`);
+      });
+    };
+    
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
   }
 }
 
-// ========================================
-// 4. АКТИВНАЯ НАВИГАЦИЯ ПРИ СКРОЛЛЕ
-// ========================================
-class ActiveNavigation {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
-    // Запускаем сразу при загрузке
-    setTimeout(() => this.handleScroll(), 100);
-  }
-
-  handleScroll() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    let current = '';
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 200;
-      if (window.pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }
-}
-
-// ========================================
-// 5. КАРТА ЯНДЕКС
-// ========================================
-class YandexMap {
-  constructor(containerId, center = CONFIG.map.center, zoom = CONFIG.map.zoom) {
-    this.containerId = containerId;
-    this.center = center;
-    this.zoom = zoom;
-    this.init();
-  }
-
-  init() {
-    if (typeof ymaps === 'undefined') {
-      console.warn('Yandex Maps API не загружен');
-      return;
-    }
-
-    ymaps.ready(() => this.createMap());
-  }
-
-  createMap() {
-    const myMap = new ymaps.Map(this.containerId, {
-      center: this.center,
-      zoom: this.zoom,
-      controls: ['zoomControl', 'fullscreenControl']
-    });
-
-    const myPlacemark = new ymaps.Placemark(this.center, {
-      hintContent: 'Колбасoff',
-      balloonContent: 'г. Екатеринбург, ул. Вайнера, 24<br>Ресторан Данилы Колбасенко'
-    }, {
-      preset: 'islands#icon',
-      iconColor: '#b84a2c'
-    });
-
-    myMap.geoObjects.add(myPlacemark);
-  }
-}
-
-// ========================================
-// 6. МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ
-// ========================================
-class BookingModal {
-  constructor() {
-    this.modal = selectElement('#successModal');
-    this.closeBtn = selectElement('#closeModal');
-    this.form = selectElement('.booking-form');
-    
-    if (this.form && this.modal) {
-      this.init();
-    }
-  }
-
-  init() {
-    this.form.addEventListener('submit', this.handleSubmit.bind(this));
-    this.closeBtn.addEventListener('click', () => this.closeModal());
-    
-    // Закрытие по клику на overlay
-    this.modal.addEventListener('click', (e) => {
-      if (e.target === this.modal) this.closeModal();
-    });
-    
-    // Закрытие по ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
-        this.closeModal();
-      }
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    
-    if (this.validateForm()) {
-      // Имитация отправки
-      setTimeout(() => {
-        this.showModal();
-        this.form.reset();
-      }, 800);
-    }
-  }
-
-  validateForm() {
-    const requiredFields = this.form.querySelectorAll('[required]');
-    let isValid = true;
-    
-    requiredFields.forEach(field => {
-      if (!field.value.trim()) {
-        field.style.borderColor = '#e74c3c';
-        isValid = false;
-        setTimeout(() => field.style.borderColor = '', 2000);
-      }
-    });
-    
-    return isValid;
-  }
-
-  showModal() {
-    this.modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeModal() {
-    this.modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-// ========================================
-// 7. МОБИЛЬНОЕ МЕНЮ (БУРГЕР)
-// ========================================
+// ----------------------------------------
+// 2. МОБИЛЬНОЕ МЕНЮ
+// ----------------------------------------
 class MobileMenu {
   constructor() {
-    this.toggle = selectElement('.mobile-menu-toggle');
-    this.nav = selectElement('.nav');
+    this.toggle = $('.mobile-menu-toggle');
+    this.nav = $('.nav');
+    if (!this.toggle) return;
     
-    if (this.toggle) {
-      this.init();
-    }
-  }
-
-  init() {
     this.toggle.addEventListener('click', () => {
       this.nav.classList.toggle('mobile-active');
       this.toggle.classList.toggle('active');
     });
-
-    // Закрытие при клике на ссылку
-    selectElements('nav a').forEach(link => {
+    
+    $$('nav a').forEach(link => {
       link.addEventListener('click', () => {
         this.nav.classList.remove('mobile-active');
         this.toggle.classList.remove('active');
@@ -219,50 +82,134 @@ class MobileMenu {
   }
 }
 
-// ========================================
-// 8. ГЛАВНАЯ ИНИЦИАЛИЗАЦИЯ
-// ========================================
-document.addEventListener('DOMContentLoaded', function() {
-  // Основные модули
-  new SmoothScroll();
-  new ActiveNavigation();
-  new YandexMap('map');
-  new BookingModal();
-  new MobileMenu();
-  
-  console.log('Колбасoff: Все модули инициализированы ✅');
-});
-
-// ========================================
-// 9. ДОПОЛНИТЕЛЬНЫЕ УТИЛИТЫ (для будущего)
-// ========================================
-const Utils = {
-  // Маска телефона
-  initPhoneMask: () => {
-    // Inputmask({ mask: "+7 (999) 999-99-99" }).mask('input[type="tel"]');
-  },
-  
-  // Анимация при скролле (Intersection Observer)
-  initScrollAnimations: () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    });
+// ----------------------------------------
+// 3. ФОРМА БРОНИРОВАНИЯ И МОДАЛКА
+// ----------------------------------------
+class BookingForm {
+  constructor() {
+    this.modal = $('#successModal');
+    this.closeBtn = $('#closeModal');
+    this.form = $('.booking-form');
+    if (!this.form || !this.modal) return;
     
-    selectElements('.animate-on-scroll').forEach(el => observer.observe(el));
+    this.submitBtn = this.form.querySelector('button[type="submit"]');
+    this.#initPhoneMask();
+    this.#initValidation();
+    this.form.addEventListener('submit', this.#handleSubmit.bind(this));
+    this.#initModal();
   }
-};
-
-// Touch-friendly мобильное меню
-class MobileMenu {
-  init() {
-    this.toggle.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      this.nav.classList.toggle('mobile-active');
-      this.toggle.classList.toggle('active');
-    }, { passive: false });
+  
+  #initPhoneMask() {
+    const phone = this.form.querySelector('input[type="tel"]');
+    if (!phone) return;
+    
+    phone.addEventListener('input', e => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.startsWith('8')) val = '7' + val.slice(1);
+      if (!val.startsWith('7')) val = '7' + val;
+      val = val.slice(0, 11);
+      
+      e.target.value = val
+        ? `+7 (${val.slice(1,4)}) ${val.slice(4,7)}-${val.slice(7,9)}-${val.slice(9,11)}`
+        : '';
+    });
+  }
+  
+  #initValidation() {
+    const validateField = field => {
+      field.classList.remove('error');
+      const val = field.value.trim();
+      let error = false;
+      
+      if (field.name === 'name') {
+        error = !val || val.length < 2 || !/^[А-ЯЁ][а-яё\s]{1,29}$/.test(val);
+      } else if (field.type === 'tel') {
+        const clean = val.replace(/[\s\-\+\(\)]/g, '');
+        error = !val || !/^7\d{10}$/.test(clean);
+      } else if (field.tagName === 'SELECT' && !field.value) {
+        error = true;
+      }
+      
+      if (error) field.classList.add('error');
+      this.#updateSubmitState();
+    };
+    
+    this.form.querySelectorAll('[required]').forEach(field => {
+      field.addEventListener('input', () => validateField(field));
+      field.addEventListener('blur', () => validateField(field));
+    });
+  }
+  
+  #updateSubmitState() {
+    const hasErrors = this.form.querySelector('.error');
+    this.submitBtn.disabled = !!hasErrors;
+    this.submitBtn.style.opacity = hasErrors ? '0.6' : '1';
+  }
+  
+  #handleSubmit(e) {
+    e.preventDefault();
+    if (this.form.querySelector('.error')) return;
+    
+    this.submitBtn.disabled = true;
+    this.submitBtn.textContent = 'Отправляем...';
+    
+    setTimeout(() => {
+      this.modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      this.form.reset();
+      this.form.querySelectorAll('.error').forEach(f => f.classList.remove('error'));
+      this.submitBtn.disabled = false;
+      this.submitBtn.textContent = 'Забронировать стол';
+      this.#updateSubmitState();
+    }, 1500);
+  }
+  
+  #initModal() {
+    this.closeBtn.addEventListener('click', () => this.#closeModal());
+    this.modal.addEventListener('click', e => e.target === this.modal && this.#closeModal());
+    document.addEventListener('keydown', e => e.key === 'Escape' && this.modal.classList.contains('active') && this.#closeModal());
+  }
+  
+  #closeModal() {
+    this.modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }
+
+// ----------------------------------------
+// 4. КАРТА
+// ----------------------------------------
+class MapWidget {
+  constructor() {
+    if (!$('#map') || typeof ymaps === 'undefined') return;
+    ymaps.ready(() => this.#init());
+  }
+  
+  #init() {
+    new ymaps.Map('map', {
+      center: CONFIG.map.center,
+      zoom: CONFIG.map.zoom,
+      controls: ['zoomControl', 'fullscreenControl']
+    }).geoObjects.add(new ymaps.Placemark(CONFIG.map.center, {
+      hintContent: 'Колбасoff',
+      balloonContent: 'г. Калининград, ул. Мореходная, 3'
+    }, { preset: 'islands#icon', iconColor: '#b84a2c' }));
+  }
+}
+
+// ----------------------------------------
+// 5. ИНИЦИАЛИЗАЦИЯ
+// ----------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  new Navigation();
+  new MobileMenu();
+  new BookingForm();
+  new MapWidget();
+  
+  // Активация первой секции для index.html
+  if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+    setTimeout(() => $('nav a[href="#about"]')?.classList.add('active'), 100);
+  }
+  
+  console.log('✅ Колбасoff: Все модули загружены');
+});
