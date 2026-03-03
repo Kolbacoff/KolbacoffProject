@@ -107,11 +107,11 @@ p {
 }
 
 .btn--rounded {
-  border-radius: 50px;
+  border-radius: 16px;
   padding: 16px 40px;
 }
 
-.btn--larger {
+.btn--large {
   width: 100%;
   padding: 22px 36px;
   font-size: 1.1rem;
@@ -933,7 +933,7 @@ section:nth-child(even):not(.contacts) {
   transform: translateY(-1px);
 }
 
-.btn--larger {
+.btn--large {
   padding: 24px 44px;
   font-size: 1.1rem;
   border-radius: 20px;
@@ -941,7 +941,7 @@ section:nth-child(even):not(.contacts) {
   transition: all 0.3s ease;
 }
 
-.btn--larger:hover:not(:disabled) {
+.btn--large:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 12px 35px rgba(184, 74, 44, 0.4);
 }
@@ -1254,7 +1254,7 @@ section:nth-child(even):not(.contacts) {
     font-size: 16px; /* Предотвращает зум на iOS */
   }
   
-  .btn--larger {
+  .btn--large {
     padding: 20px 32px;
     font-size: 1rem;
   }
@@ -1375,3 +1375,356 @@ input, select, textarea {
   }
 }
 
+.about {
+  padding: 80px 0;           /* Немного больше пространства */
+  background: white;
+}
+
+.feature-card {
+  background: white;
+  padding: 36px 28px;        /* Чуть больше внутреннего пространства */
+  border-radius: 20px;       /* Чуть крупнее скругление */
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06); /* Легкая тень */
+  border: 1px solid #f0ebe3; /* Более мягкая граница */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.feature-card i {
+  font-size: 2.3rem;         /* Чуть крупнее иконки */
+  color: #b84a2c;
+  margin-bottom: 22px;
+}
+
+.menu-order-btn {
+  max-width: 960px;               /* ← Ограничиваем ширину как у карточек меню */
+  margin: 60px auto 0;           /* ← Центрируем */
+  padding: 0 20px;
+}
+
+.order-button {
+  display: block;
+  width: 100%;
+  padding: 22px 36px;
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(184, 74, 44, 0.3);
+  transition: all 0.3s ease;
+}
+
+
+.order-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 60px rgba(184, 74, 44, 0.4);
+}
+
+/* Делаем кнопку "Забронировать стол" ТАКИМ ЖЕ как "Перейти к заказу" 
+   (применяем стили order-button к форме) */
+
+.booking-form .btn--rounded.btn--large {
+  max-width: 1140px !important;     /* ← Ширина как у меню */
+  margin-top: 28px; !important;
+  padding: 22px 36px !important;
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%) !important;
+  border-radius: 16px !important;   /* ← 50px как у order-button */
+  font-size: 1.1rem !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 0 15px 40px rgba(184, 74, 44, 0.3) !important;
+  width: 100% !important;
+}
+
+.booking-form .btn--rounded.btn--large:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 25px 60px rgba(184, 74, 44, 0.4) !important;
+}
+
+/* Растягиваем блок "Забронируйте стол" до краёв экрана */
+.booking-preview {
+  width: 100vw;                    /* ← Полная ширина экрана */
+  max-width: none;                 /* ← Убираем ограничение */
+  margin-left: calc(50% - 50vw);   /* ← Центрируем относительно экрана */
+  margin-right: calc(50% - 50vw);
+  border-radius: 0;                /* ← Убираем скругление по краям */
+  margin-top: 80px;                /* ← Отступ сверху */
+  margin-bottom: 0;                /* ← Прижимаем к следующему блоку */
+  padding: 48px 36px;
+  background: white;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+  border: none;                    /* ← Убираем границу */
+  border-left: 1px solid #efebe6;  /* ← Только боковые границы */
+  border-right: 1px solid #efebe6;
+}
+
+/* На мобилках тоже растягиваем */
+@media (max-width: 768px) {
+  .booking-preview {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 48px 24px;
+    margin-top: 60px;
+  }
+}
+
+/* Копируем стили точно от .order-button */
+.hero-buttons .order-button {
+  display: inline-block !important;
+  padding: 22px 36px !important;
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%) !important;
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 50px !important;
+  box-shadow: 0 15px 40px rgba(184, 74, 44, 0.3) !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: all 0.3s ease !important;
+}
+
+.hero-buttons .order-button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 25px 60px rgba(184, 74, 44, 0.4) !important;
+}
+
+ /* Бронирование - делаем ТОЧНО как "Перейти к заказу" */
+.hero-buttons .order-button-outline {
+  display: inline-block !important;
+  padding: 22px 36px !important;
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%) !important;
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 50px !important;
+  box-shadow: 0 15px 40px rgba(184, 74, 44, 0.3) !important;
+  font-family: 'Inter', sans-serif !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.hero-buttons .order-button-outline:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 25px 60px rgba(184, 74, 44, 0.4) !important;
+}
+/* Hero кнопки - ТОЧНО как в самом начале исходного кода */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.hero-buttons .btn {
+  padding: 14px 72px;        /* ← ОРИГИНАЛЬНЫЙ размер */
+  font-size: 0.95rem;        /* ← ОРИГИНАЛЬНЫЙ размер */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-buttons .btn:not(.btn--outline) {
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%);
+  border-radius: 16px;       /* ← Как у обычных кнопок */
+  box-shadow: 0 8px 25px rgba(184, 74, 44, 0.3);
+}
+
+.hero-buttons .btn--outline {
+  background: transparent;
+  border: 2px solid #b84a2c;
+  color: #b84a2c;
+  border-radius: 16px;       /* ← Как у обычных кнопок */
+}
+
+.hero-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(184, 74, 44, 0.4);
+}
+
+.hero-buttons .btn--outline:hover {
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%);
+  color: white;
+}
+
+/* Плавные анимации для всех кнопок */
+.hero-buttons .btn,
+.order-button,
+.booking-form .btn--large {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Плавная easing функция */
+}
+
+.hero-buttons .btn:hover,
+.order-button:hover,
+.booking-form .btn--large:hover {
+  transform: translateY(-2px) !important;  /* Меньше подъем */
+  box-shadow: 0 12px 35px rgba(184, 74, 44, 0.35) !important; /* Плавная тень */
+}
+
+/* Еще более плавный вариант */
+.hero-buttons .btn--outline:hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* Ease-out */
+  transform: translateY(-1px) !important;  /* Еще мягче */
+}
+
+/* Растягиваем белый квадрат формы бронирования до краёв экрана */
+.booking {
+  width: 100vw !important;              /* Полная ширина экрана */
+  max-width: none !important;           /* Убираем ограничение контейнера */
+  margin-left: calc(50% - 50vw) !important;  /* Центрируем по экрану */
+  margin-right: calc(50% - 50vw) !important;
+  padding: 60px 20px !important;        /* Отступы только внутри */
+  border-radius: 0 !important;          /* Убираем скругление краёв */
+}
+
+.booking .container {
+  max-width: none !important;           /* Контейнер тоже растягиваем */
+}
+
+/* На мобилках */
+@media (max-width: 768px) {
+  .booking {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    padding: 40px 16px !important;
+  }
+}
+
+
+/* МИНИМАЛЬНОЕ исправление горизонтального скролла */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Только изображения */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Только проблемные контейнеры */
+.booking-preview {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.booking {
+  overflow-x: hidden;
+}
+
+/* ТОЧНЫЙ фикс - НЕ ломает header */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Header отдельно */
+.header {
+  position: fixed !important;  /* fixed вместо sticky */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  z-index: 1000 !important;
+}
+
+/* Корректировка контента под fixed header */
+main {
+  padding-top: 80px;  /* Высота header */
+}
+
+/* Только изображения */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Контейнеры */
+.container {
+  max-width: 1280px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* Растягиваем ВНУТРЕННИЙ белый квадрат формы до краёв контейнера */
+.booking-form {
+  width: 100% !important;         /* Полная ширина родителя */
+  max-width: none !important;     /* Убираем ограничение 1200px */
+  margin: 0 !important;          /* Убираем все отступы */
+  padding: 60px 40px !important; /* Только внутренние отступы */
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+  border: 1px solid #efebe6;
+}
+
+/* Контейнер формы тоже растягиваем */
+.booking .container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 20px !important;
+}
+
+/* На мобилках */
+@media (max-width: 768px) {
+  .booking-form {
+    width: 100% !important;
+    padding: 40px 24px !important;
+    margin: 0 !important;
+  }
+}
+
+/* Растягиваем кнопку "Забронировать столик" на всю ширину формы */
+.booking-form .btn--rounded.btn--large {
+  width: 100% !important;         /* Полная ширина формы */
+  max-width: none !important;     /* Убираем ограничение */
+  margin-top: 24px !important;    /* Отступ сверху */
+  padding: 24px 36px !important;  /* Удобные внутренние отступы */
+  font-size: 1.1rem !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #b84a2c 0%, #d96a4a 100%) !important;
+  box-shadow: 0 15px 40px rgba(184, 74, 44, 0.3) !important;
+}
+
+.booking-form .btn--rounded.btn--large:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 25px 60px rgba(184, 74, 44, 0.4) !important;
+}
+
+/* ТОЧНЫЙ фикс header скролла - конец style.css */
+html { 
+  scroll-padding-top: 70px; 
+}
+
+nav a[href^="#"],
+.btn[href^="#"] {
+  scroll-margin-top: 70px;
+}
