@@ -1099,3 +1099,279 @@ section:nth-child(even):not(.contacts) {
   background-color: #b84a2c;
 }
 
+/* ==========================================================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ - ПОЛНАЯ ПОДДЕРЖКА
+   ========================================================================== */
+
+/* 🔹 БАЗОВЫЕ МОБИЛЬНЫЕ НАСТРОЙКИ (320px+) */
+@media (max-width: 1024px) {
+  .container { padding: 0 24px; }
+  
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2.2rem; }
+  
+  .header .container {
+    padding: 16px 24px;
+    height: 70px;
+  }
+  
+  .logo { font-size: 1.6rem; }
+  .nav { gap: 32px; }
+}
+
+/* 🔸 ПЛАНШЕТЫ (768px - 1024px) */
+@media (max-width: 900px) {
+  /* Гамбургер-меню */
+  .header .container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  
+  .nav.mobile-active {
+    display: flex;
+  }
+  
+  .nav a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #efebe6;
+    text-align: center;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* Hero секция */
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .hero-content p { font-size: 1.1rem; }
+  .hero-buttons { justify-content: center; }
+  
+  /* Сетки */
+  .features,
+  .menu-grid,
+  .team-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  /* Контакты */
+  .contacts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .contacts-grid .contact-square:nth-child(3),
+  .contacts-grid .contact-square:nth-child(4) {
+    grid-column: span 2;
+  }
+}
+
+/* 🔹 СМАРТФОНЫ (320px - 768px) */
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  
+  /* Типографика */
+  h1 { font-size: 2.2rem; margin-bottom: 1.2rem; }
+  h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+  
+  /* Кнопки */
+  .btn { 
+    padding: 14px 28px; 
+    font-size: 0.9rem; 
+    width: 100%; 
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn--rounded { padding: 16px 32px; }
+  
+  /* Карточки */
+  .feature-card,
+  .menu-content,
+  .review-card,
+  .team-card {
+    padding: 24px 20px;
+  }
+  
+  .menu-image { height: 180px; }
+  
+  /* Форма бронирования */
+  #booking {
+    padding: 40px 16px;
+    margin: 40px 16px;
+  }
+  
+  .booking-form {
+    padding: 40px 32px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 16px 20px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+  
+  .btn--larger {
+    padding: 20px 32px;
+    font-size: 1rem;
+  }
+  
+  /* Бронирование превью */
+  .booking-preview {
+    padding: 40px 28px;
+    margin: 40px 16px;
+  }
+  
+  .booking-preview-details {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Карта */
+  .yandex-map { height: 300px; }
+  
+  /* Контакты */
+  .contacts-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .contact-square {
+    padding: 24px 20px;
+  }
+  
+  .contact-square i { font-size: 2rem; }
+  
+  /* Команда */
+  .team-photo {
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Футер */
+  .footer .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+}
+
+/* 🔸 МАЛЕНЬКИЕ СМАРТФОНЫ (до 375px) */
+@media (max-width: 375px) {
+  .container { padding: 0 12px; }
+  
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.6rem; }
+  
+  .menu-item,
+  .review-card,
+  .feature-card {
+    margin-bottom: 20px;
+  }
+  
+  .booking-form {
+    padding: 32px 24px;
+  }
+}
+
+/* 🔹 ЛЕНДСКЕЙП (горизонтальная ориентация) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding: 40px 0; }
+  .booking-form { padding: 40px 32px; }
+  .yandex-map { height: 250px; }
+}
+
+/* ==========================================================================
+   МОБИЛЬНЫЕ УЛУЧШЕНИЯ (дополнительно)
+   ========================================================================== */
+
+/* Touch-friendly кнопки и ссылки */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .nav a,
+  .mobile-menu-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav a { padding: 16px 20px; }
+}
+
+/* Предотвращение зума на iOS при фокусе input */
+input, select, textarea {
+  font-size: 16px;
+}
+
+/* Плавные переходы только на устройствах с hover */
+@media (hover: hover) {
+  .menu-item,
+  .feature-card,
+  .team-card,
+  .review-card,
+  .contact-square {
+    transition: all 0.3s ease;
+  }
+  
+  .menu-item:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .review-card:hover,
+  .contact-square:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* Скрытие hover-эффектов на touch */
+@media (hover: none) {
+  .menu-item:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .review-card:hover,
+  .contact-square:hover {
+    transform: none;
+  }
+}
+
