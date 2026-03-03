@@ -57,16 +57,19 @@ class ActiveNavigation {
 
   init() {
     window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
+    // Запускаем сразу при загрузке
+    setTimeout(() => this.handleScroll(), 100);
   }
 
   handleScroll() {
-    const sections = selectElements('section[id], [id]');
-    const navLinks = selectElements('nav a');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
     let current = '';
 
     sections.forEach(section => {
-      if (window.pageYOffset >= (section.offsetTop - CONFIG.activeSectionOffset)) {
-        current = section.getAttribute('id') || '';
+      const sectionTop = section.offsetTop - 200;
+      if (window.pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
       }
     });
 
@@ -252,19 +255,3 @@ const Utils = {
     selectElements('.animate-on-scroll').forEach(el => observer.observe(el));
   }
 };
-
-// Предотвращает горизонтальный скролл
-document.addEventListener('DOMContentLoaded', function() {
-  const html = document.documentElement;
-  html.style.overflowX = 'hidden';
-  
-  // Фикс для формы на мобильных
-  const inputs = document.querySelectorAll('input, select, textarea');
-  inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 300);
-    });
-  });
-});
