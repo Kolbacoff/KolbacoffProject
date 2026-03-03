@@ -6,7 +6,7 @@ const CONFIG = {
   activeSectionOffset: 200,   // Отступ для активации секции
   map: {
     center: [54.701465, 20.507020],
-    zoom: 16
+    zoom: 17
   }
 };
 
@@ -255,3 +255,14 @@ const Utils = {
     selectElements('.animate-on-scroll').forEach(el => observer.observe(el));
   }
 };
+
+// Touch-friendly мобильное меню
+class MobileMenu {
+  init() {
+    this.toggle.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      this.nav.classList.toggle('mobile-active');
+      this.toggle.classList.toggle('active');
+    }, { passive: false });
+  }
+}
