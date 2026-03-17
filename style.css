@@ -1930,6 +1930,46 @@ nav a[href^="#"],
 .menu-grid .menu-item:nth-child(5) { animation-delay: 0.5s; }
 .menu-grid .menu-item:nth-child(6) { animation-delay: 0.6s; }
 
+/* 🔥 ПОЛЕ ДАТА ТОЧНЫЙ ЦВЕТ ФОНА НА МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+  #date {
+    /* ✅ ТОЧНЫЙ ФОН КАК У ОСТАЛЬНЫХ ПОЛЕЙ */
+    background-color: #fafafa !important;
+    background-image: linear-gradient(45deg, transparent 49%, #e8e8e8 50%), 
+                      linear-gradient(-45deg, transparent 49%, #e8e8e8 50%) !important;
+    background-size: 8px 8px !important;
+    background-position: 0 0, 4px 4px !important;
+    
+    /* Остальные стили остаются */
+    width: 100% !important;
+    height: 56px !important;
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    border: 2px solid #e8e8e8 !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    appearance: none !important;
+    
+    /* Кастомная иконка календаря */
+    background-image: 
+      linear-gradient(45deg, transparent 49%, #e8e8e8 50%), 
+      linear-gradient(-45deg, transparent 49%, #e8e8e8 50%),
+      url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%236b7280' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 4v1m8-1v1M4 4h12M5 15H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1M9 7h2m-2 4h2m-8 0h16M7 7h1m2 0h1m6 0h1M7 11h1m2 0h1m6 0h1'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat, no-repeat, no-repeat !important;
+    background-position: 0 0, 4px 4px, right 16px center !important;
+    background-size: 8px 8px, 8px 8px, 20px !important;
+  }
+  
+  /* Фокус состояние */
+  #date:focus {
+    background-color: #fff !important; /* Белый при фокусе */
+    background-image: none !important;
+    border-color: #b84a2c !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(184, 74, 44, 0.1) !important;
+  }
+}
+
 /* 🔥 ПОЛЕ ДАТА ТАКИЙ ЖЕ РАЗМЕР НА МОБИЛЬНЫХ */
 @media (max-width: 768px) {
   #date {
