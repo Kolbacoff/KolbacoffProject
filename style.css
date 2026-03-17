@@ -1840,3 +1840,214 @@ nav a[href^="#"],
   cursor: not-allowed !important;
   transform: none !important;
 }
+
+/* 🔥 АНИМАЦИИ НА ТЕЛЕФОН ВЕРНУТ ДЕСКТОПНЫЕ ЭФФЕКТЫ */
+@media (max-width: 900px) {
+  /* 1. ВОЗВРАЩАЕМ HOVER как TOUCH-эффекты */
+  .menu-item:active,
+  .feature-card:active,
+  .team-card:active,
+  .review-card:active,
+  .contact-square:active {
+    transform: translateY(-8px) !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  /* 2. КНОПКИ - ПРЯМОЙ КЛИК = HOVER */
+  .btn:active,
+  .btn--large:active,
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 35px rgba(184, 74, 44, 0.4) !important;
+    background: linear-gradient(135deg, #9c3e24, #c8563a) !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* 3. НАВИГАЦИЯ - АКТИВНЫЙ ЭЛЕМЕНТ */
+  .nav a:active {
+    color: #b84a2c !important;
+    transform: scale(1.05);
+  }
+  
+  /* 4. КАРТОЧКИ - LONG PRESS эффект */
+  .menu-item,
+  .feature-card,
+  .team-card,
+  .review-card,
+  .contact-square {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+/* 🔹 УБИРАЕМ БЛОКИРОВЩИК HOVER на touch */
+@media (hover: none) and (pointer: coarse) {
+  /* НЕ скрываем hover - используем :active вместо */
+  .menu-item:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .review-card:hover,
+  .contact-square:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* 🔸 МИКРОАНИМАЦИИ при загрузке - работают на всех устройствах */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item,
+.feature-card,
+.team-card,
+.review-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+/* Плавное появление по очереди */
+.menu-item:nth-child(1) { animation-delay: 0.1s; }
+.menu-item:nth-child(2) { animation-delay: 0.2s; }
+.menu-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* 🔹 РИПЛ ЭФФЕКТ для кнопок (дополнительный кайф) */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.booking-form button[type="submit"]::before {
+  display: none; /* Только для обычных кнопок */
+}
+
+/* 🔥 АНИМАЦИЯ КОНТАКТОВ ДЛЯ ВСЕХ КАРТОЧЕК - ТОЧНО КАК БЫЛО */
+.menu-item,
+.feature-card, 
+.team-card,
+.review-card,
+.contact-square {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ПК + TOUCH */
+@media (hover: hover) {
+  .menu-item:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .review-card:hover,
+  .contact-square:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+}
+
+/* МОБИЛЬНЫЕ - ACTIVE вместо HOVER */
+@media (hover: none) and (pointer: coarse) {
+  .menu-item:active,
+  .feature-card:active,
+  .team-card:active,
+  .review-card:active,
+  .contact-square:active {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+}
+
+/* 🔹 ПОЯВЛЕНИЕ ПО ОЧЕРЕДИ при загрузке */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Применяем ко всем карточкам */
+.menu-item,
+.feature-card,
+.team-card,
+.review-card,
+.contact-square {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* СТАГГЕР-АНИМАЦИЯ (по очереди) */
+.menu-grid .menu-item:nth-child(1),
+.features .feature-card:nth-child(1),
+.team-grid .team-card:nth-child(1),
+.reviews-grid .review-card:nth-child(1),
+.contacts-grid .contact-square:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.menu-grid .menu-item:nth-child(2),
+.features .feature-card:nth-child(2),
+.team-grid .team-card:nth-child(2),
+.reviews-grid .review-card:nth-child(2),
+.contacts-grid .contact-square:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.menu-grid .menu-item:nth-child(3),
+.features .feature-card:nth-child(3),
+.team-grid .team-card:nth-child(3),
+.reviews-grid .review-card:nth-child(3),
+.contacts-grid .contact-square:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.menu-grid .menu-item:nth-child(4),
+.team-grid .team-card:nth-child(4),
+.contacts-grid .contact-square:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.menu-grid .menu-item:nth-child(5) { animation-delay: 0.5s; }
+.menu-grid .menu-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* ✅ МОБИЛЬНЫЕ - ТОЧНО КАК ПК HOVER */
+@media (hover: none) and (pointer: coarse) {
+  .menu-item,
+  .feature-card,
+  .team-card,
+  .review-card,
+  .contact-square {
+    /* Добавляем :focus + :active И hover работает */
+    cursor: pointer;
+  }
+  
+  /* hover БУДЕТ работать на телефоне */
+  .menu-item:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .review-card:hover,
+  .contact-square:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+}
