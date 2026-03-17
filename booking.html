@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Бронирование | Ресторан Данилы Колбасенко</title>
+  <meta name="description" content="Забронируйте столик онлайн в ресторане Колбасoff Данилы Колбасенко в Калининграде. Быстрое подтверждение за 15 минут.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,46 +33,77 @@
     <section class="booking" id="booking">
       <div class="container">
         <div class="booking-header">
-          <h2>Забронируйте стол</h2>
-          <p>Онлайн-бронирование доступно за 2 часа до посещения. Для больших компаний звоните <strong>+7 (343) 288-88-55.</strong></p>
+          <h1>Забронируйте стол</h1>
+          <p>Онлайн-бронирование доступно за 2 часа до посещения. Для компаний от 7+ гостей звоните <strong>+7 (4012) 77-88-55</strong></p>
         </div>
         
-        <form class="booking-form" novalidate>
+        <form class="booking-form" novalidate aria-labelledby="booking-form-title">
+          <div id="booking-form-title" class="sr-only">Форма бронирования столика</div>
+          
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Имя</label>
-              <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+              <label for="name">Имя <span aria-hidden="true">*</span></label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Введите ваше имя" 
+                required 
+                aria-describedby="name-error"
+                maxlength="50"
+              >
+              <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
             </div>
             <div class="form-group">
-              <label for="phone">Телефон</label>
-              <input type="tel" id="phone" name="phone" placeholder="Введите ваш телефон" required>
+              <label for="phone">Телефон <span aria-hidden="true">*</span></label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                placeholder="Введите ваш телефон" 
+                required 
+                pattern="\+7\s?\([0-9]{3}\)\s?[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                aria-describedby="phone-error"
+                maxlength="18"
+              >
+              <div id="phone-error" class="error-message" role="alert" aria-live="polite"></div>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
-              <label for="guests">Количество гостей</label>
-              <select id="guests" name="guests" required>
+              <label for="guests">Количество гостей <span aria-hidden="true">*</span></label>
+              <select id="guests" name="guests" required aria-describedby="guests-error">
                 <option value="">Выберите количество</option>
                 <option value="1">1 гость</option>
                 <option value="2">2 гостя</option>
                 <option value="3">3 гостя</option>
                 <option value="4">4 гостя</option>
                 <option value="5">5 гостей</option>
-		<option value="6">6 гостей</option>
-		<option value="7+">7+ гостей</option>
+                <option value="6">6 гостей</option>
+                <option value="7+">7+ гостей (по телефону)</option>
               </select>
+              <div id="guests-error" class="error-message" role="alert" aria-live="polite"></div>
             </div>
             <div class="form-group">
-              <label for="date">Дата</label>
-              <input type="date" id="date" name="date" required>
+              <label for="date">Дата <span aria-hidden="true">*</span></label>
+              <input 
+                type="date" 
+                id="date" 
+                name="date" 
+                required 
+                min="" 
+                max="" 
+                aria-describedby="date-error"
+              >
+              <div id="date-error" class="error-message" role="alert" aria-live="polite"></div>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group full-width">
-              <label for="time">Время</label>
-              <select id="time" name="time" required>
+              <label for="time">Время <span aria-hidden="true">*</span></label>
+              <select id="time" name="time" required aria-describedby="time-error">
                 <option value="">Выберите время</option>
                 <option value="14:00">14:00</option>
                 <option value="15:00">15:00</option>
@@ -82,17 +114,28 @@
                 <option value="20:00">20:00</option>
                 <option value="21:00">21:00</option>
                 <option value="22:00">22:00</option>
-                <option value="23:00">23:00</option>
               </select>
+              <div id="time-error" class="error-message" role="alert" aria-live="polite"></div>
             </div>
           </div>
           
           <div class="form-group">
-            <label for="notes">Дополнительно</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Ваши пожелания..."></textarea>
+            <label for="notes">Дополнительные пожелания</label>
+            <textarea 
+              id="notes" 
+              name="notes" 
+              rows="3" 
+              placeholder="Предпочтения по столу, аллергии, особые запросы..."
+              maxlength="500"
+            ></textarea>
           </div>
           
-          <button type="submit" class="btn btn--rounded btn--large">Забронировать стол</button>
+          <div class="form-submit">
+            <button type="submit" class="btn btn--rounded btn--large" disabled>
+              <span class="btn-text">Забронировать стол</span>
+              <span class="btn-loader" aria-hidden="true"></span>
+            </button>
+          </div>
         </form>
       </div>
     </section>
@@ -101,40 +144,55 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-logo">Колбасoff</div>
-      <div>© 2025 Ресторан имени Данилы Колбасенко</div>
+      <div>© 2026 Ресторан имени Данилы Колбасенко</div>
       <div>Сайт разработан с любовью к мясу</div>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
-
-<div id="confirmModal" class="confirm-popup">
-  <div class="popup-content">
-    <button class="popup-close">&times;</button>
-    <h3>Подтвердите бронирование</h3>
-    <div class="booking-data">
-      <div class="data-row">
-        <span>Имя:</span>
-        <strong id="dataName">—</strong>
+  <div id="confirmModal" class="confirm-popup" role="dialog" aria-labelledby="confirm-title" aria-hidden="true">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Закрыть окно подтверждения">
+        <span>&times;</span>
+      </button>
+      <h3 id="confirm-title">Подтвердите бронирование</h3>
+      <div class="booking-data" role="status" aria-live="polite">
+        <div class="data-row">
+          <span>Имя:</span>
+          <strong id="dataName">—</strong>
+        </div>
+        <div class="data-row">
+          <span>Телефон:</span>
+          <strong id="dataPhone">—</strong>
+        </div>
+        <div class="data-row">
+          <span>Гостей:</span>
+          <strong id="dataGuests">—</strong>
+        </div>
+        <div class="data-row">
+          <span>Дата/время:</span>
+          <strong id="dataDateTime">—</strong>
+        </div>
       </div>
-      <div class="data-row">
-        <span>Телефон:</span>
-        <strong id="dataPhone">—</strong>
+      <div class="popup-actions">
+        <button id="backBtn" type="button" class="btn-secondary">Изменить</button>
+        <button id="confirmBtn" type="button" class="btn-primary">Забронировать</button>
       </div>
-      <div class="data-row">
-        <span>Гостей:</span>
-        <strong id="dataGuests">—</strong>
-      </div>
-      <div class="data-row">
-        <span>Дата/время:</span>
-        <strong id="dataDateTime">—</strong>
-      </div>
-    </div>
-    <div class="popup-actions">
-      <button id="backBtn" class="btn-secondary">Изменить</button>
-      <button id="confirmBtn" class="btn-primary">Забронировать</button>
     </div>
   </div>
-</div>
+
+  <script src="script.js" defer></script>
+  <script>
+  document.documentElement.classList.remove('js-loading');
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      document.documentElement.classList.remove('js-loading');
+    });
+  } else {
+    // Fallback для старых браузеров
+    window.addEventListener('load', function() {
+      document.documentElement.classList.remove('js-loading');
+    });
+  }
+</script>
 </body>
 </html>
