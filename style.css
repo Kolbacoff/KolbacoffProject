@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. RESET & BASE STYLES
-   ========================================================================== */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -35,9 +32,6 @@ body {
   padding: 0 32px;
 }
 
-/* ==========================================================================
-   2. TYPOGRAPHY
-   ========================================================================== */
 h1, h2, h3, .logo, .footer-logo {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
@@ -85,9 +79,6 @@ img {
   height: auto;
 }
 
-/* ==========================================================================
-   3. BUTTONS & COMPONENTS
-   ========================================================================== */
 .btn {
   display: inline-block;
   background-color: #b84a2c;
@@ -142,26 +133,11 @@ img {
   font-family: 'Inter', sans-serif;
 }
 
-.btn:active::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 0.4s ease-out;
+.btn:active {
+  transform: scale(0.97);
+  background-color: #9c3e24 !important;
 }
 
-@keyframes ripple {
-  to { width: 200px; height: 200px; opacity: 0; }
-}
-
-/* ==========================================================================
-   4. HEADER & NAVIGATION
-   ========================================================================== */
 .header {
   background-color: #ffffff;
   box-shadow: 0 2px 20px rgba(0,0,0,0.03);
@@ -230,9 +206,6 @@ nav a[href^="#"],
   scroll-margin-top: 70px;
 }
 
-/* ==========================================================================
-   5. HERO SECTION
-   ========================================================================== */
 .hero {
   padding: 60px 0 80px;
   background: linear-gradient(to bottom, #fff, #faf7f2);
@@ -307,9 +280,6 @@ nav a[href^="#"],
   border-radius: inherit;
 }
 
-/* ==========================================================================
-   6. GRID SYSTEMS
-   ========================================================================== */
 .features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -345,9 +315,6 @@ nav a[href^="#"],
   margin-bottom: 50px;
 }
 
-/* ==========================================================================
-   7. FEATURE CARDS (About)
-   ========================================================================== */
 .about {
   padding: 80px 0;
   background: white;
@@ -385,9 +352,6 @@ nav a[href^="#"],
   color: #5f5a54;
 }
 
-/* ==========================================================================
-   8. MENU CARDS
-   ========================================================================== */
 .menu-item {
   background: white;
   border-radius: 20px;
@@ -441,9 +405,6 @@ nav a[href^="#"],
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   9. TEAM CARDS
-   ========================================================================== */
 .team-card {
   background: white;
   border-radius: 20px;
@@ -491,9 +452,6 @@ nav a[href^="#"],
   font-size: 0.95rem;
 }
 
-/* ==========================================================================
-   10. REVIEW CARDS
-   ========================================================================== */
 .review-card {
   background: white;
   border-radius: 20px;
@@ -551,9 +509,6 @@ nav a[href^="#"],
   font-size: 1rem;
 }
 
-/* ==========================================================================
-   11. BOOKING FORM
-   ========================================================================== */
 #booking {
   margin: 80px auto;
   padding: 60px 40px;
@@ -751,9 +706,6 @@ nav a[href^="#"],
   transform: none !important;
 }
 
-/* ==========================================================================
-   12. BOOKING PREVIEW
-   ========================================================================== */
 .booking-preview {
   width: 100vw;
   max-width: none;
@@ -830,9 +782,6 @@ nav a[href^="#"],
   margin-top: 48px;
 }
 
-/* ==========================================================================
-   13. CONTACTS SECTION
-   ========================================================================== */
 .contacts {
   padding: 100px 0 40px;
   background: white;
@@ -885,9 +834,6 @@ nav a[href^="#"],
   margin-top: 40px;
 }
 
-/* ==========================================================================
-   14. FOOTER
-   ========================================================================== */
 .footer {
   background: #2d2a24;
   color: #b9b1a7;
@@ -908,9 +854,6 @@ nav a[href^="#"],
   color: white;
 }
 
-/* ==========================================================================
-   15. MODAL & POPUP
-   ========================================================================== */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -1094,9 +1037,6 @@ nav a[href^="#"],
   box-shadow: 0 8px 25px rgba(184, 74, 44, 0.4);
 }
 
-/* ==========================================================================
-   16. MOBILE MENU
-   ========================================================================== */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -1123,16 +1063,10 @@ nav a[href^="#"],
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ==========================================================================
-   17. MAIN CONTENT
-   ========================================================================== */
 main {
   padding-top: 80px;
 }
 
-/* ==========================================================================
-   18. SECTION STYLES
-   ========================================================================== */
 section:nth-child(odd) {
   background: rgba(255, 255, 255, 0.7);
   margin: 40px 0;
@@ -1150,9 +1084,6 @@ section:nth-child(even):not(.contacts) {
   padding: 40px 0;
 }
 
-/* ==========================================================================
-   19. ANIMATIONS
-   ========================================================================== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1208,9 +1139,6 @@ section:nth-child(even):not(.contacts) {
   animation-delay: 0.6s;
 }
 
-/* ==========================================================================
-   20. RESPONSIVE - TABLETS (900px)
-   ========================================================================== */
 @media (max-width: 900px) {
   .container {
     padding: 0 24px;
@@ -1300,9 +1228,6 @@ section:nth-child(even):not(.contacts) {
   }
 }
 
-/* ==========================================================================
-   21. RESPONSIVE - SMARTPHONES (600px)
-   ========================================================================== */
 @media (max-width: 600px) {
   .container {
     padding: 0 16px;
@@ -1428,9 +1353,6 @@ section:nth-child(even):not(.contacts) {
   }
 }
 
-/* ==========================================================================
-   22. RESPONSIVE - SMALL SMARTPHONES (375px)
-   ========================================================================== */
 @media (max-width: 375px) {
   .container {
     padding: 0 12px;
@@ -1455,9 +1377,6 @@ section:nth-child(even):not(.contacts) {
   }
 }
 
-/* ==========================================================================
-   23. RESPONSIVE - LANDSCAPE
-   ========================================================================== */
 @media (max-height: 500px) and (orientation: landscape) {
   .hero {
     padding: 40px 0;
@@ -1472,9 +1391,6 @@ section:nth-child(even):not(.contacts) {
   }
 }
 
-/* ==========================================================================
-   24. TOUCH DEVICE OPTIMIZATIONS
-   ========================================================================== */
 @media (hover: none) and (pointer: coarse) {
   .btn,
   .btn--large,
@@ -1537,16 +1453,10 @@ section:nth-child(even):not(.contacts) {
   }
 }
 
-/* ==========================================================================
-   25. INPUT FIXES
-   ========================================================================== */
 input, select, textarea {
   font-size: 16px;
 }
 
-/* ==========================================================================
-   26. UTILITIES
-   ========================================================================== */
 .btn,
 .booking-form button {
   touch-action: manipulation;
@@ -1554,4 +1464,65 @@ input, select, textarea {
   -webkit-touch-callout: none;
   user-select: none;
   outline: none;
+}
+
+.feature-card,
+.menu-item,
+.team-card,
+.review-card,
+.contact-square,
+.btn,
+.btn--large,
+.booking-form button[type="submit"] {
+  /* Заставляем браузер использовать GPU */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  /* Убираем все hover-эффекты на тач-устройствах */
+  .feature-card,
+  .menu-item,
+  .team-card,
+  .review-card,
+  .contact-square {
+    transition: none;
+  }
+  
+  .btn:active,
+  .btn--large:active,
+  .booking-form button[type="submit"]:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #9c3e24 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-card,
+  .menu-item,
+  .team-card,
+  .review-card,
+  .contact-square {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  .feature-card,
+  .menu-item,
+  .team-card,
+  .review-card,
+  .contact-square {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+@supports (will-change: transform) {
+  .btn:hover,
+  .btn--large:hover,
+  .feature-card:hover {
+    will-change: transform;
+  }
 }
