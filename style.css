@@ -2069,3 +2069,37 @@ nav a[href^="#"],
 @keyframes ripple {
   to { width: 200px; height: 200px; opacity: 0; }
 }
+
+/* ✅ ФИКС ЗАЖИМАНИЯ КНОПОК НА ТЕЛЕФОНЕ */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .btn--large,
+  .btn-primary,
+  .btn-secondary,
+  .booking-form button[type="submit"] {
+    /* Отключаем transform на touch */
+    transform: none !important;
+    
+    /* Быстрый transition только для цвета/тени */
+    transition: background-color 0.15s ease, 
+                box-shadow 0.15s ease !important;
+  }
+  
+  /* Цветовая анимация вместо подъема */
+  .btn:active,
+  .btn--large:active,
+  .btn-primary:active {
+    background: #9c3e24 !important;
+    box-shadow: 0 4px 15px rgba(184, 74, 44, 0.4) !important;
+  }
+}
+
+/* ✅ Touch Action - убирает задержку 300ms */
+.btn,
+.booking-form button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  outline: none;
+}
