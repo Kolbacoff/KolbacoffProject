@@ -1840,18 +1840,6 @@ nav a[href^="#"],
   cursor: not-allowed !important;
   transform: none !important;
 }
-
-/* 🔥 АНИМАЦИИ НА ТЕЛЕФОН ВЕРНУТ ДЕСКТОПНЫЕ ЭФФЕКТЫ */
-@media (max-width: 900px) {
-  /* 1. ВОЗВРАЩАЕМ HOVER как TOUCH-эффекты */
-  .menu-item:active,
-  .feature-card:active,
-  .team-card:active,
-  .review-card:active,
-  .contact-square:active {
-    transform: translateY(-8px) !important;
-    transition: all 0.2s ease !important;
-  }
   
   /* 2. КНОПКИ - ПРЯМОЙ КЛИК = HOVER */
   .btn:active,
@@ -2006,25 +1994,3 @@ nav a[href^="#"],
 
 .menu-grid .menu-item:nth-child(5) { animation-delay: 0.5s; }
 .menu-grid .menu-item:nth-child(6) { animation-delay: 0.6s; }
-
-/* ✅ МОБИЛЬНЫЕ - ТОЧНО КАК ПК HOVER */
-@media (hover: none) and (pointer: coarse) {
-  .menu-item,
-  .feature-card,
-  .team-card,
-  .review-card,
-  .contact-square {
-    /* Добавляем :focus + :active И hover работает */
-    cursor: pointer;
-  }
-  
-  /* hover БУДЕТ работать на телефоне */
-  .menu-item:hover,
-  .feature-card:hover,
-  .team-card:hover,
-  .review-card:hover,
-  .contact-square:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-  }
-}
