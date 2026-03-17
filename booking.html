@@ -33,7 +33,7 @@
       <div class="container">
         <div class="booking-header">
           <h2>Забронируйте стол</h2>
-          <p>Онлайн-бронирование доступно за 2 часа до посещения. Для больших компаний звоните <strong>+7 (343) 288-88-55</strong></p>
+          <p>Онлайн-бронирование доступно за 2 часа до посещения. Для больших компаний звоните <strong>+7 (343) 288-88-55.</strong></p>
         </div>
         
         <form class="booking-form" novalidate>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
               <label for="phone">Телефон</label>
-              <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+              <input type="tel" id="phone" name="phone" placeholder="Введите ваш телефон" required>
             </div>
           </div>
           
@@ -57,7 +57,9 @@
                 <option value="2">2 гостя</option>
                 <option value="3">3 гостя</option>
                 <option value="4">4 гостя</option>
-                <option value="5+">5+ гостей</option>
+                <option value="5">5 гостей</option>
+		<option value="6">6 гостей</option>
+		<option value="7+">7+ гостей</option>
               </select>
             </div>
             <div class="form-group">
@@ -87,7 +89,7 @@
           
           <div class="form-group">
             <label for="notes">Дополнительно</label>
-            <textarea id="notes" name="notes" placeholder="Аллергия, пожелания к столу, особые запросы..." rows="3"></textarea>
+            <textarea id="notes" name="notes" rows="3" placeholder="Ваши пожелания..."></textarea>
           </div>
           
           <button type="submit" class="btn btn--rounded btn--large">Забронировать стол</button>
@@ -105,5 +107,34 @@
   </footer>
 
   <script src="script.js" defer></script>
+
+<div id="confirmModal" class="confirm-popup">
+  <div class="popup-content">
+    <button class="popup-close">&times;</button>
+    <h3>Подтвердите бронирование</h3>
+    <div class="booking-data">
+      <div class="data-row">
+        <span>Имя:</span>
+        <strong id="dataName">—</strong>
+      </div>
+      <div class="data-row">
+        <span>Телефон:</span>
+        <strong id="dataPhone">—</strong>
+      </div>
+      <div class="data-row">
+        <span>Гостей:</span>
+        <strong id="dataGuests">—</strong>
+      </div>
+      <div class="data-row">
+        <span>Дата/время:</span>
+        <strong id="dataDateTime">—</strong>
+      </div>
+    </div>
+    <div class="popup-actions">
+      <button id="backBtn" class="btn-secondary">Изменить</button>
+      <button id="confirmBtn" class="btn-primary">Забронировать</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
