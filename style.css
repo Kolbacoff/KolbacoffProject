@@ -1929,3 +1929,29 @@ nav a[href^="#"],
 
 .menu-grid .menu-item:nth-child(5) { animation-delay: 0.5s; }
 .menu-grid .menu-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* 🔥 ПОЛЕ ДАТА ТАКИЙ ЖЕ РАЗМЕР НА МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+  #date {
+    width: 100% !important;
+    height: 56px !important;  /* Высота как у text и select */
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    border: 2px solid #e8e8e8 !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    box-sizing: border-box !important;
+    appearance: none; /* Убираем стрелку Safari */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 4v1m8-1v1M4 4h12M5 15H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1M9 7h2m-2 4h2m-8 0h16M7 7h1m2 0h1m6 0h1M7 11h1m2 0h1m6 0h1'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px;
+  }
+  
+  /* Фокус состояние */
+  #date:focus {
+    border-color: #b84a2c !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(184, 74, 44, 0.1) !important;
+  }
+}
