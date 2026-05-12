@@ -1,0 +1,10 @@
+.env
+node_modules/
+.vs/
+.vscode/
+package.json
+package-lock.json
+vite.config.js
+src/
+.DS_Store
+Thumbs.db
