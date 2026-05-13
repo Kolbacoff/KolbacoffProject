@@ -7,16 +7,19 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "esbuild script.js --bundle --outfile=dist/script.js --minify",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "node build.cjs",
+    "start": "npx live-server dist --port=5500 --open=index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.32.0"
+  },
   "devDependencies": {
-    "esbuild": "^0.28.0",
-    "gh-pages": "^6.3.0"
+    "esbuild": "^0.19.4",
+    "gh-pages": "^6.3.0",
+    "live-server": "^1.2.2"
   }
 }
