@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vs/
+*.suo
+*.user
+*.cache
+.DS_Store

@@ -1,0 +1,22 @@
+{
+  "name": "kolbacoffproject-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "esbuild script.js --bundle --outfile=dist/script.js --minify",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "gh-pages": "^6.3.0"
+  }
+}
