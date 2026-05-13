@@ -1,57 +1,50 @@
-name: Deploy site to GitHub Pages
+name: Deploy KolbacoffProject to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+    branches:
+      - main  # workflow срабатывает на пуш в main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      # 1. Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # 2. Устанавливаем Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '18'
 
+      # 3. Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
-      - name: Build JS
+      # 4. Собираем JS с помощью esbuild
+      - name: Build JavaScript
         run: |
-          mkdir dist
-          npx esbuild script.js --bundle --outfile=dist/script.js
+          mkdir -p dist
+          npx esbuild script.js --bundle --outfile=dist/script.js --minify
 
-      - name: Copy files
+      # 5. Копируем остальные статические файлы
+      - name: Copy static files
         run: |
           cp index.html dist/
           cp booking.html dist/
           cp style.css dist/
           cp -r images dist/
           cp -r docs dist/
+          cp supabase.js dist/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # 6. Деплой на GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
         with:
-          path: ./dist
-
-  deploy:
-    environment:
-      name: github-pages
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          user_name: 'github-actions'
+          user_email: 'github-actions@github.com'
