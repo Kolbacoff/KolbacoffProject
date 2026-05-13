@@ -1,9 +1,9 @@
-name: Deploy KolbacoffProject to GitHub Pages
+name: Build & Deploy KolbacoffProject to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # workflow срабатывает на пуш в main
+      - main  # Запуск при пуше в main
 
 jobs:
   build-and-deploy:
@@ -24,23 +24,27 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Собираем JS с помощью esbuild
-      - name: Build JavaScript
+      # 4. Создаем папку для сборки
+      - name: Prepare dist folder
         run: |
+          rm -rf dist
           mkdir -p dist
-          npx esbuild script.js --bundle --outfile=dist/script.js --minify
 
-      # 5. Копируем остальные статические файлы
+      # 5. Собираем JS с ESBuild
+      - name: Build JavaScript
+        run: npx esbuild script.js --bundle --outfile=dist/script.js --minify
+
+      # 6. Копируем все HTML, CSS, Supabase и статические ресурсы
       - name: Copy static files
         run: |
           cp index.html dist/
           cp booking.html dist/
           cp style.css dist/
+          cp supabase.js dist/
           cp -r images dist/
           cp -r docs dist/
-          cp supabase.js dist/
 
-      # 6. Деплой на GitHub Pages
+      # 7. Деплой на GitHub Pages автоматически
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v6
         with:
