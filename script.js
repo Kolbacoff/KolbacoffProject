@@ -124,6 +124,15 @@ class BookingForm {
       field.oninput = () => this.#validate(field);
       field.onblur = () => this.#validate(field);
     });
+
+      // Добавляем специальную обработку для чекбокса
+      const consentCheckbox = $('#consent');
+      if (consentCheckbox) {
+          consentCheckbox.onchange = () => {
+              this.#validate(consentCheckbox);
+              this.#updateButton();
+          };
+      }
     
     const nameField = $('#name');
     if (nameField) {
@@ -197,6 +206,11 @@ class BookingForm {
       today.setHours(0, 0, 0, 0);
       return selectedDate >= today;
     }
+
+      // Добавляем проверку для чекбокса
+      if (field.id === 'consent') {
+          return field.checked === true;
+      }
     
     return !!val;
   }
@@ -239,9 +253,14 @@ class BookingForm {
     this.submitBtn.style.cursor = isFullyValid ? 'pointer' : 'not-allowed';
     
     if (!isFullyValid) {
-      this.submitBtn.textContent = 'Заполните все поля';
+        // Более информативное сообщение
+        if (!this.#isFieldValid($('#consent'))) {
+            this.submitBtn.textContent = 'Примите условия обработки данных';
+        } else {
+            this.submitBtn.textContent = 'Заполните все поля';
+        }
     } else {
-      this.submitBtn.textContent = 'Забронировать стол';
+        this.submitBtn.textContent = 'Забронировать стол';
     }
   }
   
@@ -268,7 +287,13 @@ class BookingForm {
     const date = $('#date').value;
     const time = $('#time').value;
     $('#dataDateTime').textContent = 
-      `${new Date(date).toLocaleDateString('ru-RU')} ${time}`;
+        `${new Date(date).toLocaleDateString('ru-RU')} ${time}`;
+
+      // Добавляем отображение согласия в модалке
+      const consentData = document.getElementById('dataConsent');
+      if (consentData) {
+          consentData.textContent = $('#consent').checked ? 'Дано ✓' : '—';
+      }
     
     $('#confirmModal').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -338,6 +363,13 @@ function initModalHandlers() {
     async function confirmBooking() {
         closeModal();
 
+        // Дополнительная проверка согласия перед отправкой
+        const consentCheckbox = $('#consent');
+        if (!consentCheckbox || !consentCheckbox.checked) {
+            alert('Для бронирования необходимо принять условия обработки персональных данных');
+            return;
+        }
+
         const btn = $('.booking-form button[type="submit"]');
         const originalText = btn.textContent;
         btn.textContent = 'Отправляем...';
@@ -350,7 +382,9 @@ function initModalHandlers() {
             guests: parseInt($('#guests').value),
             date: $('#date').value,
             time: $('#time').value,
-            notes: $('#notes').value || null
+            notes: $('#notes').value || null,
+            consent_given: true,  // Добавляем отметку о согласии
+            consent_date: new Date().toISOString()  // Дата согласия
         };
 
         console.log('Отправляем данные:', bookingData);
