@@ -1961,14 +1961,14 @@ nav a[href^="#"],
 /* Стили для чекбокса согласия */
 .checkbox-label {
     display: flex;
-    align-items: center; /* Изменено с flex-start на center для вертикального выравнивания */
+    align-items: center;
     gap: 12px;
     cursor: pointer;
     user-select: none;
     position: relative;
-    padding: 16px 0 8px 0; /* Увеличен верхний отступ для отделения от предыдущих элементов */
-    margin-top: 12px; /* Дополнительный отступ сверху */
-    border-top: 1px solid #efebe6; /* Разделительная линия сверху для визуального отделения */
+    padding: 8px 0 4px 0;
+    margin-top: 4px;
+    border-top: 1px solid #efebe6;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -1976,8 +1976,6 @@ nav a[href^="#"],
     opacity: 0;
     width: 0;
     height: 0;
-    margin: 0;
-    padding: 0;
 }
 
 .checkbox-custom {
@@ -1989,10 +1987,6 @@ nav a[href^="#"],
     background: #faf7f2;
     transition: all 0.2s ease;
     position: relative;
-}
-
-.checkbox-label:hover .checkbox-custom {
-    border-color: #b84a2c;
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
@@ -2012,61 +2006,14 @@ nav a[href^="#"],
     transform: rotate(45deg);
 }
 
-.checkbox-label input[type="checkbox"]:focus + .checkbox-custom {
-    box-shadow: 0 0 0 3px rgba(184, 74, 44, 0.2);
-}
-
 .checkbox-text {
     font-size: 0.9rem;
     color: #5a5349;
     line-height: 1.4;
-    flex: 1; /* Позволяет тексту занимать оставшееся пространство */
+    flex: 1;
 }
 
 .consent-link {
     color: #b84a2c;
     text-decoration: underline;
-    transition: color 0.2s;
-}
-
-.consent-link:hover {
-    color: #9c3e24;
-}
-
-/* Ошибка для чекбокса */
-.checkbox-label input[type="checkbox"].error + .checkbox-custom {
-    border-color: #e74c3c;
-    background: rgba(231, 76, 60, 0.05);
-}
-
-.error-message {
-    color: #e74c3c;
-    font-size: 0.75rem;
-    margin-top: 4px;
-    margin-left: 36px; /* Сохраняем отступ под чекбоксом */
-    margin-bottom: 8px;
-}
-
-/* Дополнительный стиль для мобильных устройств */
-@media (max-width: 600px) {
-    .checkbox-label {
-        padding: 12px 0 6px 0;
-        gap: 10px;
-    }
-    
-    .checkbox-text {
-        font-size: 0.85rem;
-    }
-    
-    .checkbox-custom {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
-        left: 6px;
-        top: 3px;
-        width: 5px;
-        height: 9px;
-    }
 }
