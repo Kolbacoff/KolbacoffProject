@@ -7,8 +7,16 @@
     "doc": "docs"
   },
   "scripts": {
+<<<<<<< HEAD
     "build": "node build.cjs",
     "start": "npx live-server dist --port=5500 --open=index.html"
+=======
+    "start": "npx live-server . --port=5500 --open=./index.html",
+    "build": "mkdir -p dist && npx esbuild script.js --bundle --outfile=dist/script.js --minify",
+    "copy-static": "cp index.html dist/ && cp booking.html dist/ && cp style.css dist/ && cp supabase.js dist/ && cp -r images dist/ && cp -r docs dist/",
+    "predeploy": "npm run build && npm run copy-static",
+    "deploy": "gh-pages -d dist"
+>>>>>>> fd9b013e3a8317c0c1d5dbb4adce37001d2ffb5c
   },
   "keywords": [],
   "author": "",
@@ -19,7 +27,15 @@
   },
   "devDependencies": {
     "esbuild": "^0.19.4",
+<<<<<<< HEAD
     "gh-pages": "^6.3.0",
     "live-server": "^1.2.2"
+=======
+    "gh-pages": "^5.0.0",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.32.0"
+>>>>>>> fd9b013e3a8317c0c1d5dbb4adce37001d2ffb5c
   }
 }
